@@ -1,0 +1,60 @@
+.carousel {
+    display: flex;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel img {
+    width: 300px;
+    border-radius: 8px;
+}
+
+.description, .review-section {
+    margin: 20px 0;
+}
+
+body {
+    background-color: ffffff; /* Vert forêt */
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+#animalList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.animal-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px;
+}
+
+.animal-card img {
+    width: 100%;
+    height: auto;
+}
+
+.animal-card h3 {
+    padding: 10px;
+    font-size: 1.5em;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+.animal-card p {
+    padding: 10px;
+    color: #333;
+}
+

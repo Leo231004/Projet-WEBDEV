@@ -1,0 +1,33 @@
+#enclosureList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.enclosure-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enclosure-card img {
+    width: 100%;
+    height: auto;
+}
+
+.enclosure-card h3 {
+    padding: 10px;
+    font-size: 1.5em;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+.enclosure-card p {
+    padding: 10px;
+    color: #333;
+}
