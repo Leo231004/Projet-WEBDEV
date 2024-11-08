@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - Parc Animalier</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Rechercher un Enclos par Animal</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="enclosures.html">Enclos</a></li>
+                <li><a href="tickets.html">Billetterie</a></li>
+                <li><a href="login.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Entrez le nom d'un animal...">
+            <button onclick="searchAnimal()">Rechercher</button>
+        </section>
+
+        <section id="searchResults">
+            <!-- Résultats de la recherche -->
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/search.js"></script>
+</body>
+</html>

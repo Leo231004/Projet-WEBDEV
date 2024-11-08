@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation - Parc Animalier</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Carte Interactive du Parc</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="enclosures.html">Enclos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="login.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="map-section">
+            <h2>Choisissez un point de départ et un point d'arrivée</h2>
+            <select id="startPoint">
+                <option value="entrance">Entrée</option>
+                <option value="savannah">Savane</option>
+                <option value="rainforest">Forêt tropicale</option>
+                <option value="arctic">Arctique</option>
+                <!-- Ajouter d'autres options selon les zones du parc -->
+            </select>
+
+            <select id="endPoint">
+                <option value="entrance">Entrée</option>
+                <option value="savannah">Savane</option>
+                <option value="rainforest">Forêt tropicale</option>
+                <option value="arctic">Arctique</option>
+                <!-- Ajouter d'autres options selon les zones du parc -->
+            </select>
+
+            <button onclick="calculateRoute()">Voir l'itinéraire</button>
+
+            <div id="routeResult"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

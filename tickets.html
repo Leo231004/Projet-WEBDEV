@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billetterie - Parc Animalier</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Billetterie en Ligne</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="enclosures.html">Enclos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="login.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="ticket-purchase">
+            <h2>Réservez vos billets</h2>
+            <form id="ticketForm">
+                <label for="numTickets">Nombre de billets:</label>
+                <input type="number" id="numTickets" min="1" max="10" required>
+
+                <label for="visitDate">Date de visite:</label>
+                <input type="date" id="visitDate" required>
+
+                <button type="submit">Acheter</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/tickets.js"></script>
+</body>
+</html>
