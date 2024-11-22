@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Parc Animalier</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue au Parc Animalier</title>
+  <link href="styles/output.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Bienvenue au Parc Animalier</h1>
-        <nav>
-            <ul>
-                <li><a href="enclosures.html">Enclos</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="tickets.html">Billetterie</a></li>
-                <li><a href="navigation.html">Navigation</a></li>
-                <li><a href="login.html">Connexion</a></li>
-            </ul>
-        </nav>
+<body class="min-h-screen bg-gray-100 font-sans">
+  <div id="root" class="flex flex-col">
+    <header class="bg-white shadow-sm">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-3xl font-bold text-green-800">Parc Animalier</a>
+        <ul class="flex space-x-4">
+          <li><a href="enclosures.html" class="hover:text-green-700 transition-colors duration-300">Enclos</a></li>
+          <li><a href="services.html" class="hover:text-green-700 transition-colors duration-300">Services</a></li>
+          <li><a href="tickets.html" class="hover:text-green-700 transition-colors duration-300">Billetterie</a></li>
+          <li><a href="navigation.html" class="hover:text-green-700 transition-colors duration-300">Navigation</a></li>
+          <li><a href="login.html" class="hover:text-green-700 transition-colors duration-300">Connexion</a></li>
+        </ul>
+      </nav>
     </header>
-    <main>
-        <section>
-            <h2>Découvrez nos enclos</h2>
-            <p>Explorez les habitats de nos animaux et apprenez-en plus sur chaque espèce.</p>
-            <a href="enclosures.html" class="button">Voir les enclos</a>
-        </section>
+
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <section class="bg-white shadow-lg rounded-lg p-6 md:p-8 lg:p-10">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="md:mr-8 lg:mr-12">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-green-800 mb-4">Découvrez nos enclos</h2>
+            <p class="text-gray-600 mb-6 text-lg md:text-xl">
+              Explorez les habitats de nos animaux et apprenez-en plus sur chaque espèce.
+            </p>
+          </div>
+          <a href="enclosures.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-colors duration-300">
+            Voir les enclos
+          </a>
+        </div>
+      </section>
     </main>
-    <footer>
-        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p>&copy; 2024 Parc Animalier. Tous droits réservés.</p>
+      </div>
     </footer>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

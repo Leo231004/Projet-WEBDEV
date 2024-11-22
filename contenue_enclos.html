@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'Enclos - Parc Animalier</title>
+    <link rel="stylesheet" href="./css/contenue_enclos.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="enclosures.html">Enclos</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="tickets.html">Billetterie</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="enclosure-detail">
+            <div class="carousel">
+                <img src="images/enclosure1.jpg" alt="Vue de l'enclos">
+            </div>
+
+            <section class="description">
+                <h2>description ------</h2>
+                <p>Description détaillée de l'enclos et de ses zones spécifiques...</p>
+            </section>
+
+            <section id="contenuList" class="section">
+                <!-- Zones de l'enclos seront générées dynamiquement par JavaScript -->
+            </section>
+
+            <div id="enclosureModal" class="modal">
+                <div class="modal-content">
+                    <button class="modal-close">×</button>
+                    <img class="modal-image" src="" alt="">
+                    <h2 class="modal-title"></h2>
+                    <div class="modal-description"></div>
+                </div>
+            </div>
+
+            <section class="review-section">
+                <h3>Laisser un avis</h3>
+                <form>
+                    <textarea placeholder="Votre avis"></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+    </footer>
+
+    <script src="./js/contenue_enclos.js"></script>
+</body>
+</html>
