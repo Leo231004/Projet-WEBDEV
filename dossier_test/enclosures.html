@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enclos - Parc Animalier</title>
-    <link rel="stylesheet" href="css/enclosures.css">
+    <link rel="stylesheet" href="./enclosures.css">
 </head>
 <body>
     <header>
@@ -20,8 +20,9 @@
     </header>
 
     <main role="main">
-        <!-- Container pour la liste des enclos -->
-        <div id="enclosureList" class="section"></div>
+        <section id="enclosureList" class="section">
+            <!-- Les enclos seront injectés ici par JavaScript -->
+        </section>
 
         <!-- Modale pour les détails des enclos -->
         <div id="enclosureModal" class="modal">
@@ -32,17 +33,12 @@
                 <div class="modal-description"></div>
             </div>
         </div>
-
-    <main>
-        <section id="enclosureList">
-            <!-- Les enclos seront injectés ici par JavaScript -->
-        </section>
     </main>
 
     <footer>
         <p>© 2024 Parc Animalier. Tous droits réservés.</p>
     </footer>
 
-    <script src="js/enclosures.js"></script>
+    <script src="enclosures.js"></script>
 </body>
 </html>
