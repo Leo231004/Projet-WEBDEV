@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enclos - Parc Animalier</title>
+    <link rel="stylesheet" href="css/enclosures.css">
+</head>
+<body>
+    <header>
+        <h1>Liste des Enclos</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="tickets.html">Billetterie</a></li>
+                <li><a href="login.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <!-- Container pour la liste des enclos -->
+        <div id="enclosureList" class="section"></div>
+
+        <!-- Modale pour les détails des enclos -->
+        <div id="enclosureModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <img class="modal-image" src="" alt="">
+                <h2 class="modal-title"></h2>
+                <div class="modal-description"></div>
+            </div>
+        </div>
+
+    <main>
+        <section id="enclosureList">
+            <!-- Les enclos seront injectés ici par JavaScript -->
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Parc Animalier. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/enclosures.js"></script>
+</body>
+</html>
