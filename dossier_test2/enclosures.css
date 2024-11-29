@@ -1,0 +1,126 @@
+:root {
+    --primary-color: #4CAF50;
+    --highlight-color: #FFA500;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --card-border-color: #ddd;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --border-radius-md: 10px;
+    --mobile-width: 768px;
+}
+
+/* Enclosure List Section */
+.enclosure-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
+}
+
+/* Enclosure Card (Postcard) Styles */
+.enclosure-card {
+    background-color: white;
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--card-shadow);
+    padding: var(--spacing-md);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.enclosure-card:hover {
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-5px);
+}
+
+.enclosure-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    width: 90%;
+    height: 80%;
+    overflow: auto;
+    z-index: 1000;
+    display: flex;
+}
+
+/* Enclosure Details Expanded */
+.enclosure-details-expanded {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.carousel {
+    flex: 1;
+    display: flex;
+    overflow-x: scroll;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+}
+
+.carousel-item {
+    min-width: 200px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm);
+    box-shadow: var(--card-shadow);
+    text-align: center;
+}
+
+.animal-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+}
+
+/* Animal Info Section */
+.animal-info-container {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+}
+
+.animal-info {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Close Button Styles */
+.close-button {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: var(--highlight-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #e59400;
+}
+
+/* Buttons Styles */
+.back-button {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--highlight-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #e59400;
+}
