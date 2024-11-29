@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Filtrer les enclos pour ne conserver que ceux avec enclosure_id < 51
-            const filteredEnclosures = data.filter(enclosure => enclosure.enclosure_id < 51);
+            const filteredEnclosures = data.filter(enclosure => enclosure.enclosure_id < 51 || enclosure.enclosure_id > 64);
 
             // Grouper les enclos par biome
             const biomes = {};
