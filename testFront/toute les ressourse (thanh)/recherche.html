@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Zoo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="acceuil.html">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Zoo">
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="les_habitats.html">Les Habitats</a></li> 
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="infos_pratique.html">Infos Pratiques</a></li>
+                    <li><a href="connexion.html">connexion</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+            <!-- Section Google Map -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.337651645029!2d2.2944816156748573!3d48.85884407928738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fddd75a7d3b%3A0xb4b484c368cd63db!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1634678562136!5m2!1sfr!2sfr"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <!-- Rectangle avec barre de recherche et catégories -->
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Rechercher...">
+                <div class="categories">
+                    <div class="category">
+                        <button class="category-button">Habitats</button>
+                        <div class="category-content">
+                            <p>Description des habitats.</p>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <button class="category-button">Enclos</button>
+                        <div class="category-content">
+                            <p>Description des enclos.</p>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <button class="category-button">Restaurants</button>
+                        <div class="category-content">
+                            <p>Description des restaurants.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Informations pratiques</h3>
+                <ul>
+                    <li><a href="infos_pratique.html">Horaires</a></li>
+                    <li><a href="#">Plan du parc</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="billetterie.html">Billetterie</a></li>
+                    <li><a href="#">Boutique</a></li>
+                    <li><a href="#">Restauration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Tél: 02 54 75 50 00</li>
+                    <li>Email: contact@zooparc.fr</li>
+                    <li>Adresse: 41110 Saint-Aignan</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 ZooParc. Tous droits réservés.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
