@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Tableau de Bord</title>
+</head>
+<body>
+    <h1>Bienvenue !</h1>
+    <button id="logout-button">Déconnexion</button>
+
+    <script>
+        // Vérification si l'utilisateur est connecté
+        window.addEventListener('DOMContentLoaded', function() {
+            fetch('/check-session', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+                    window.location.href = 'index.html';
+                } else {
+                    document.querySelector('h1').textContent = `Bienvenue, ${data.username} !`;
+                }
+            });
+        });
+
+        // Gestion de la déconnexion
+        document.getElementById('logout-button').addEventListener('click', function () {
+            fetch('/logout', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
