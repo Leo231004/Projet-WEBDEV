@@ -1,5 +1,8 @@
 // index.js
 
+// Vérification si l'utilisateur est déjà connecté
+window.addEventListener('DOMContentLoaded', () => checkSession(true));
+
 document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -57,5 +60,3 @@ document.getElementById('showLoginForm').addEventListener('click', function () {
     document.getElementById('signup-section').style.display = 'none';
     document.getElementById('login-section').style.display = 'block';
 });
-
-window.addEventListener('DOMContentLoaded', () => checkSession(true));
