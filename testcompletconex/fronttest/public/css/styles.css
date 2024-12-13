@@ -1,116 +1,123 @@
-:root {
-    --primary-color: #326434;
-    --secondary-color: #FFA500;
-    --text-color: #faf2f2;
-    --background-color: #08150c;
-    --border-radius: 8px;
-    --white: #ffffff;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --card-border-color: #4a6d4a;
-    --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    --card-hover-shadow: 0 8px 12px rgba(0,0,0,0.2);
-    --highlight-color: #FFA500;
-    --card-background: #2c4a2c;
-}
-
-
-
 body {
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    background: url('images/body.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-image: url('images/body.png');
-    background-size: cover;
-    background-position: center;
+    height: 100vh;
+    color: #333;
 }
 
 .form-container {
-    background-color: rgba(50, 100, 52, 0.8);
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-    padding: 2rem;
-    width: 60%; 
-    max-width: 600px;
-    transition: transform 0.3s ease;
-}
-
-.form-container:hover {
-    transform: scale(1.02);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacement vertical entre les champs */
+    text-align: center;
+    border: 2px solid #4caf50; /* Contour vert */
+    justify-content: center; /* Centre verticalement les champs */
+    align-items: center; /* Centre horizontalement les champs */
 }
 
 .form-section {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* Les champs prennent toute la largeur */
 }
 
-.form-section h2 {
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    font-size: 2.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-control {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--primary-color);
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border-radius: var(--border-radius);
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(255,165,0,0.2);
-}
-
-.btn {
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--secondary-color);
-    color: var(--background-color);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-}
-
-.btn:hover {
-    background-color: #ffbc00;
-}
-
-.form-footer {
-    margin-top: 1.5rem;
-    text-align: center;
+input[type="text"],
+input[type="password"],
+button {
+    width: 90%; /* Ajuste la largeur pour aligner les champs */
+    padding: 10px;
     font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.form-footer a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
+input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.form-footer a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
+button {
+    background-color: #ffc107; /* Bouton jaune */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-#signup-section {
-    display: none;
+button:hover {
+    background-color: #ffca28; /* Jaune plus clair au survol */
+}
+
+p {
+    font-size: 0.9rem;
+    color: white;
+}
+
+button[id="showSignupForm"],
+button[id="showLoginForm"] {
+    background: none;
+    color: #4caf50; /* Bouton texte vert */
+    font-size: 0.9rem;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    transition: color 0.3s;
+}
+
+button[id="showSignupForm"]:hover,
+button[id="showLoginForm"]:hover {
+    color: #388e3c; /* Vert foncé au survol */
+}
+.profile-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #ffc107;
+}
+
+.profile-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+#logout-button {
+    margin-top: 20px;
+    width: auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-button:hover {
+    background-color: #ffca28;
 }

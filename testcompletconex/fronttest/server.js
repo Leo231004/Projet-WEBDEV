@@ -165,3 +165,24 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Serveur écoutant sur le port ${PORT}`);
 });
+// Route pour récupérer les données utilisateur
+app.get('/profile', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Utilisateur non connecté' });
+    }
+
+    const username = req.session.user;
+    db.query('SELECT username, email FROM users WHERE username = ?', [username], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération du profil:', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Utilisateur introuvable' });
+        }
+
+        const user = results[0];
+        res.json({ success: true, user });
+    });
+});
