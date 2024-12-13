@@ -4,7 +4,7 @@
     --primary-color: #326434;
     --secondary-color: #a6dca6;
     --text-color: #faf2f2;
-    --background-color: #08150c;
+    --background-color: #cbffcb;
     --border-radius: 8px;
     --white: #ffffff;
     --spacing-sm: 0.5rem;
@@ -25,7 +25,7 @@
 }
 
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
@@ -49,7 +49,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/header.png');
+    background-image: url('images/body.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -284,12 +284,12 @@ main {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 4rem;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
     z-index: 1; /* Assurer que le contenu est au-dessus de l'overlay */
-    max-width: 1400px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -303,7 +303,7 @@ main {
 /* Description styles */
 .animals-description {
     padding: 2rem;
-    background: rgb(65, 100, 69);
+    background-image: url("images/fond2.jpg");
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -1006,16 +1006,14 @@ nav ul li:hover .services-dropdown {
 
 .services-section {
     padding: 4rem 2rem;
-    background-image: url('images/body.png');
-    background-size: cover;
-    background-position: center;
     position: relative;
     margin-top: 0px; /* Remonter la section */
     padding-top: 6rem; /* Ajuster le padding pour compenser */
     z-index: 10; /* S'assurer que la section est au-dessus des autres */
+    background-image: url("images/fond.jpg");
 }
 
-.services-section::before {
+.services-section:not(.billeterie)::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1026,14 +1024,42 @@ nav ul li:hover .services-dropdown {
     z-index: -1; /* Placer l'overlay derrière le contenu */
 }
 
+
 .services-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 5;
-    gap: 0; /* Suppression de l'espace entre les éléments */
-    padding: 3;
-    
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    z-index: 1; /* Assurer que le contenu est au-dessus de l'overlay */
+    width: 2500px;
+    height: 350px;
+}
+
+.services-description {
+    padding: 2rem;
+    background-color: rgb(65, 100, 69);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.services-description h3 {
+    color: rgb(234, 197, 29);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.services-description ul {
+    margin: 1.5rem 0;
+    padding-left: 1.2rem;
+}
+
+.services-description li {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .services-text {
@@ -1041,15 +1067,16 @@ nav ul li:hover .services-dropdown {
     color: var(--text-color);
 }
 
-.services-text h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 2.5rem;
-}
 
 .services-text h3 {
     color: var(--secondary-color);
     margin: 1.5rem 0 1rem;
+    font-size: 2rem;
+}
+
+.services-description p {
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .services-text ul {
@@ -1072,6 +1099,7 @@ nav ul li:hover .services-dropdown {
 
 .services-image {
     flex: 1;
+    max-width: 1000px;
 }
 
 
@@ -1080,6 +1108,29 @@ nav ul li:hover .services-dropdown {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
 }
+
+.billeterie-content {
+    display: flex;
+    flex-direction: column; /* Disposition verticale */
+    align-items: center;   /* Centrage horizontal */
+    justify-content: center; /* Centrage vertical */
+    text-align: center; /* Aligne le texte au centre */
+    margin: 0;
+    padding: 5rem;
+}
+
+.billeterie-content h3 {
+    font-size: 2.5rem; /* Taille du titre */
+    margin-bottom: 1rem;
+    color: rgb(234, 197, 29); /* Couleur du titre */
+}
+
+.billeterie-content p {
+    font-size: 1.5rem; /* Taille du paragraphe */
+    margin-bottom: 1.5rem;
+    color: #ffffff; /* Couleur du texte */
+}
+
 
 .boutique .services-content {
     flex-direction: row;
