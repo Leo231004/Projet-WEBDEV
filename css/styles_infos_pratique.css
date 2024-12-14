@@ -107,6 +107,31 @@ nav ul li a:hover {
     color: rgb(234, 197, 29); /* Change uniquement la couleur du texte */
 }
 
+/* Styles pour la section Tarifs et Horaires */
+.horaires-tarifs {
+    background-image: url('images/services.jpg'); /* pour l'instant aucune image */
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /*  filter: blur(5px); ajoute flou effect */
+}
+
+.horaires-tarifs-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: var(--border-radius); 
+}
+
+.horaires-tarifs h2 {
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* Sections génériques */
 main {
     max-width: 1200px;
