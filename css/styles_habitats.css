@@ -23,7 +23,7 @@
 }
 
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
@@ -45,13 +45,32 @@ body {
     background-color: #a6dca6;
     }
 
+
+.cta-button2 {
+    background-color: #1e6322;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px; /* Augmenté à 20 pixels pour un bouton plus arrondi */
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    }
+    .cta-button2:hover {
+    background-color: #1e6322;
+    }
+
 /* En-tête */
 header {
-    background-image: url('images/header.png');
+    background-image: url('images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-blend-mode: darken;
+    background-color:  rgba(0,0,0,0.15);
 }
 
 .header-container {
@@ -78,22 +97,49 @@ header {
     font-size: 1.8rem;
 }
 
+nav {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    width: 100%; /* Prend toute la largeur disponible */
+}
+
 nav ul {
     display: flex;
     list-style-type: none;
     gap: 20px;
-    margin-left: auto;
+    justify-content: center; /* Centre les éléments de la liste */
+    align-items: center;
+    margin-right: -400px; /* Centre la liste elle-même */
     padding-right: 0px;
+    width: 100%;
+}
+
+nav ul li:last-child {
+    margin-left: auto; /* Pousse le dernier élément (Connexion) vers la droite */
 }
 
 nav ul li a {
     color: var(--white);
     text-decoration: none;
-    padding: 15px 25px; /* Augmentation du padding pour des boutons plus grands */
+    padding: 10px 25px; /* Augmentation du padding pour des boutons plus grands */
     border-radius: 4px;
     transition: color 0.3s ease;
     font-weight: bold; /* Mise en gras du texte */
     font-size: 1.1rem; /* Légèrement plus grand que la taille par défaut */
+}
+
+nav ul li .cta-button2 {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+}
+
+/* Ajout de cette règle spécifique */
+nav ul li:last-child .cta-button2 {
+    margin-left: 300px; /* Augmente l'espace avant le bouton Connexion */
 }
 
 .nav {
