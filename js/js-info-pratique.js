@@ -127,3 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestion de la FAQ
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Fermer toutes les autres questions ouvertes
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').classList.remove('active');
+                }
+            });
+            
+            // Basculer la question courante
+            item.classList.toggle('active');
+            question.classList.toggle('active');
+        });
+    });
+});
