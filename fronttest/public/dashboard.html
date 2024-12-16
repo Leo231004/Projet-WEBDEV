@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Profil</title>
 </head>
 <body>
-    
-    <div class="container">
-        <h1>Bienvenue !</h1>
-        <button class="deconnexion" id="logout-button">Déconnexion</button>
-        <a href="http://localhost/teste2/acceuil.html" class="bouton">retour vers acceuil</a>
-     </div>
-    
-    <script src="js/main.js"></script>
+    <div class="profile-container">
+        <h1>Profil Utilisateur</h1>
+        <p><strong>Nom d'utilisateur :</strong> <span id="username">Chargement...</span></p>
+        <p><strong>Email :</strong> <span id="email">Chargement...</span></p>
+        <button id="logout-button">Déconnexion</button>
+    </div>
     <script src="js/dashboard.js"></script>
 </body>
 </html>
