@@ -1,66 +1,105 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e6f3e6;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    background: url('images/body.png') no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
-    padding: 20px;
-    color: #2c5e2e;
-    line-height: 1.6;
+    padding: 0;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-image: url('images/body.png');
+    height: 100vh;
 }
 
-.container {
-    background-color: #074026;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    text-align: center;
-    max-width: 600px;
+/* Conteneur principal pour le profil */
+.profile-container {
     width: 100%;
-    border: 4px solid #4caf50;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    border: 2px solid #4caf50; /* Bordure verte élégante */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-h1 {
-    color: #2e7d32;
-    margin-bottom: 30px;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+.profile-container h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #2e7d32; /* Vert jungle */
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.profile-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333; /* Texte sombre */
+}
+
+/* Boutons */
 .bouton {
     display: inline-block;
-    background-color: #4caf50;
-    color: white;
+    background-color: #ffc107; /* Jaune chaleureux */
+    color: #2e7d32; /* Vert jungle pour le texte */
     text-decoration: none;
     padding: 12px 24px;
+    margin: 15px 10px;
+    border: 2px solid #2e7d32; /* Bordure verte */
     border-radius: 25px;
-    transition: all 0.3s ease;
     font-weight: bold;
-    margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .bouton:hover {
-    background-color: #388e3c;
+    background-color: #ffeb3b; /* Jaune clair au survol */
+    color: #1b5e20; /* Vert foncé pour le texte */
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/*bouton deconnexion*/
-.deconnexion {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #e53935;
+/* Bouton de déconnexion */
+#logout-button {
+    background-color: #4caf50; /* Vert */
     color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.9em;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.deconnexion:hover {
-    background-color: #c62828;
+#logout-button:hover {
+    background-color: #388e3c; /* Vert plus sombre */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+
+    .bouton {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
 }
