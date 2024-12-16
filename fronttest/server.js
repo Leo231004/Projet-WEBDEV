@@ -6,13 +6,18 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
+const cors = require('cors'); // Importez le package CORS
+
 
 const app = express();
-
+// Ajoutez le middleware CORS pour autoriser le frontend
+app.use(cors({
+    origin: 'http://localhost//Projet-WEBDEV', // URL de votre frontend (modifiez si nécessaire)
+    credentials: true // Permettre les cookies/sessions cross-origin
+}));
 // Middleware pour l'analyse des formulaires
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 // Configurer les sessions
 app.use(session({
     secret: 'votre_secret_pour_la_session',
@@ -164,4 +169,39 @@ app.use(express.static(path.join(__dirname, 'public')));
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Serveur écoutant sur le port ${PORT}`);
+});
+// Route pour récupérer les données utilisateur
+app.get('/profile', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Utilisateur non connecté' });
+    }
+
+    const username = req.session.user;
+    db.query('SELECT username, email FROM users WHERE username = ?', [username], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération du profil:', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Utilisateur introuvable' });
+        }
+
+        const user = results[0];
+        res.json({ success: true, user });
+    });
+});
+// Route pour vérifier l'état de connexion de l'utilisateur
+app.get('/check-session', (req, res) => {
+    if (req.session.isLoggedIn && req.session.user) {
+        res.json({
+            success: true,
+            user: req.session.user // Retourne les infos utilisateur (nom, email)
+        });
+    } else {
+        res.json({
+            success: false,
+            message: "Utilisateur non connecté"
+        });
+    }
 });
