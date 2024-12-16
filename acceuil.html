@@ -109,24 +109,7 @@
     </footer>
 
     <!-- Importation des scripts -->
-    <script src="js/carousel.js"></script>
+    <script src="js/changeButton.js"></script>
     <script src="js/js-acceuil.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('http://localhost:3000/check-session', {
-                method: 'GET',
-                credentials: 'include'
-            })
-            .then(response => response.json())
-            .then(data => {
-                const navContainer = document.getElementById('nav-connection');
-                if (data.success && data.username) {
-                    navContainer.innerHTML = `<a href="http://localhost:3000" class="cta-button2">Profil</a>
-                                               <span>Bienvenue, ${data.username}!</span>`;
-                }
-            })
-            .catch(err => console.error('Erreur vérification de session:', err));
-        });
-    </script>
 </body>
 </html>
