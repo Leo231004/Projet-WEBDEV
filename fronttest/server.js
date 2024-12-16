@@ -12,7 +12,7 @@ const cors = require('cors'); // Importez le package CORS
 const app = express();
 // Ajoutez le middleware CORS pour autoriser le frontend
 app.use(cors({
-    origin: 'http://localhost//Projet-WEBDEV', // URL de votre frontend (modifiez si nécessaire)
+    origin: 'http://localhost', // URL de votre frontend (modifiez si nécessaire)
     credentials: true // Permettre les cookies/sessions cross-origin
 }));
 // Middleware pour l'analyse des formulaires
@@ -191,9 +191,10 @@ app.get('/profile', (req, res) => {
         res.json({ success: true, user });
     });
 });
-// Route pour vérifier l'état de connexion de l'utilisateur
+// Route pour vérifier l'état de connexion de l'utilisateur 
 app.get('/check-session', (req, res) => {
-    if (req.session.isLoggedIn && req.session.user) {
+    console.log('Session user :', req.session.user); // Vérifiez le contenu de la session
+    if (req.session.user) {
         res.json({
             success: true,
             user: req.session.user // Retourne les infos utilisateur (nom, email)
