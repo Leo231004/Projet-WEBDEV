@@ -4,25 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte Interactive - Parc Animalier</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles_recherche.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+    
 </head>
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">
-                <h1>Parc Animalier</h1>
-            </div>
+            
+            <a href="acceuil.html">
+               <div class="logo">
+                <img src="images/logo.png" alt="Zoo de la Barben">
+                </div>
+            
+            </a>
+            
+            
             <nav>
                 <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Carte</a></li>
-                    <li><a href="#">Contact</a></li>
+                   <div class="nav">
+                    <li><a href="les_habitats.html">Les Habitats</a></li> 
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="infos_pratique.html">Infos Pratiques</a></li>
+                    <li><a href="billetterie.html" class="cta-button2">Billetterie</a></li>
+                    <li><a href="http://localhost:3000" class="cta-button2">Connexion</a></li>
+                    </div>
+
+
                 </ul>
             </nav>
-        </div>
     </header>
     <main>
         <div class="main-container">
@@ -54,13 +65,13 @@
                 <h2 class="section-title">Créer votre itinéraire</h2>
                 <div id="route-fields">
                     <div class="route-field">
-                        <label for="start-point">D’où souhaitez-vous partir ?</label>
+                        <label for="start-point">D'où souhaitez-vous partir ?</label>
                         <select id="start-point" class="search-bar">
                             <option value="">-- Sélectionnez un point de départ --</option>
                         </select>
                     </div>
                     <div class="route-field">
-                        <label for="end-point">Jusqu’où souhaitez-vous aller ?</label>
+                        <label for="end-point">Jusqu'où souhaitez-vous aller ?</label>
                         <select id="end-point" class="search-bar">
                             <option value="">-- Sélectionnez un point d'arrivée --</option>
                         </select>
@@ -81,21 +92,36 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>À propos</h3>
-                <p>Visitez notre parc animalier pour découvrir des animaux du monde entier.</p>
+                <h3>Informations pratiques</h3>
+                <ul>
+                    <li><a href="infos_pratique.html">Horaires</a></li>
+                    <li><a href="#">Plan du parc</a></li>
+                </ul>
             </div>
+
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Billetterie</a></li>
+                    <li><a href="#">Boutique</a></li>
+                    <li><a href="#">Restauration</a></li>
+                </ul>
+            </div>
+
             <div class="footer-section">
                 <h3>Contact</h3>
                 <ul>
-                    <li>Email : contact@parc-animalier.com</li>
-                    <li>Téléphone : +33 1 23 45 67 89</li>
+                    <li>Tél: 04 90 55 19 12</li>
+                    <li>Email: contact@parcanimalierlabarben.com</li>
+                    <li>Adresse: Route du Château 13330 La Barben</li>
                 </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            &copy; 2024 Parc Animalier | Tous droits réservés.
+            <p>© 2015 Parc animalier de la barben. Tous droits réservés.</p>
         </div>
     </footer>
-    <script src="searchMap.js"></script>
+    <script src="js/searchMap.js"></script>
 </body>
 </html>
