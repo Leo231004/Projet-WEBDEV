@@ -23,7 +23,7 @@
 }
 
 body {
-    font-family: 'Comfortaa', Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
@@ -47,7 +47,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/header.png');
+    background-image: url('../images/fond2.jpg');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -207,7 +207,7 @@ main {
 /* Animals section acceuil pour centrer le tout et reduire les bordure*/
 .animals {
     padding: 4rem 2rem;
-    background-image: url('css/images/body.png');
+    background-image: url('../images/body.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -388,4 +388,141 @@ nav ul li:hover .services-dropdown {
     border-radius: var(--border-radius);
     font-size: 1rem;
     color: var(--white);
+}
+/* Style de base pour les volets déroulants */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #fff; /* Couleur de fond */
+    color: #333; /* Couleur du texte */
+    appearance: none; /* Supprime la flèche native pour en personnaliser une */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image: url('images/arrow-down.svg'); /* Ajouter une flèche personnalisée */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+/* Style lorsque le volet déroulant est en focus */
+.search-bar:focus {
+    border-color: #007bff; /* Couleur de bordure active */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre légère */
+    outline: none; /* Supprimer le contour par défaut */
+}
+
+/* Ajout d'un effet au survol */
+.search-bar:hover {
+    border-color: #0056b3; /* Couleur de bordure plus sombre au survol */
+}
+
+/* Ajout d'une flèche personnalisée */
+.search-bar {
+    background-image: url('images/arrow-down.svg'); /* Icône pour la flèche */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* Pour cibler uniquement les volets dans les catégories spécifiques */
+.category .search-bar {
+    margin-bottom: 15px;
+}
+/* Style pour le bouton */
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+/* Champs pour définir les itinéraires */
+/* Champs pour définir les itinéraires */
+.route-field {
+    margin-bottom: 15px;
+}
+
+.route-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+/* Conteneurs */
+.search-container,
+.route-container {
+    margin-top: 20px;
+}
+
+.route-container {
+    display: none; /* Masquer par défaut */
+}
+/* Style pour la boîte de description de l'itinéraire */
+.route-description {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.route-description h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.route-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.route-description ul li {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+/* Bouton retour à la carte */
+#return-to-map-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#return-to-map-btn:hover {
+    background-color: #d32f2f;
 }

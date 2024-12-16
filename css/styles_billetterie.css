@@ -207,7 +207,7 @@ main {
 /* Animals section acceuil pour centrer le tout et reduire les bordure*/
 .animals {
     padding: 4rem 2rem;
-    background-image: url('images/body.png');
+    background-image: url('../images/body.png');
     background-size: cover;
     background-position: center;
     position: relative;
