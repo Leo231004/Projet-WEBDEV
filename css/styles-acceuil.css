@@ -64,7 +64,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/fond4.png');
+    background-image: url('../images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -463,7 +463,7 @@ nav ul li:hover .services-dropdown {
 /* Animals section acceuil pour centrer le tout et reduire les bordure*/
 .animals {
     padding: 4rem 2rem;
-    background-image: url('images/fond2.jpg');
+    background-image: url('../images/fond2.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

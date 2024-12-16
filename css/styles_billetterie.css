@@ -47,7 +47,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/header.png');
+    background-image: url('../images/header.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -207,7 +207,7 @@ main {
 /* Animals section acceuil pour centrer le tout et reduire les bordure*/
 .animals {
     padding: 4rem 2rem;
-    background-image: url('css/images/body.png');
+    background-image: url('images/body.png');
     background-size: cover;
     background-position: center;
     position: relative;
