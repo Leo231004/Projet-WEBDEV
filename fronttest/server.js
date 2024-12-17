@@ -247,3 +247,40 @@ app.post('/submit-reservation', (req, res) => {
         });
     });
 });
+// Route POST pour soumettre un avis
+app.post('/submit-review', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Utilisateur non connecté.' });
+    }
+
+    const { enclosure_id, rating, comment } = req.body;
+
+    // Validation des données
+    if (!enclosure_id || !rating || !comment) {
+        return res.status(400).json({ success: false, message: 'Champs manquants.' });
+    }
+
+    // Récupérer user_id depuis username dans la session
+    db.query('SELECT id FROM users WHERE username = ?', [req.session.user], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Erreur récupération user_id:', err);
+            return res.status(500).json({ success: false, message: 'Utilisateur non trouvé.' });
+        }
+
+        const user_id = results[0].id;
+
+        // Insertion dans la table reviews
+        const query = `
+            INSERT INTO reviews (enclosure_id, user_id, rating, comment, created_at)
+            VALUES (?, ?, ?, ?, NOW())
+        `;
+        db.query(query, [enclosure_id, user_id, rating, comment], (err) => {
+            if (err) {
+                console.error('Erreur insertion avis:', err);
+                return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+            }
+
+            res.json({ success: true, message: 'Avis soumis avec succès.' });
+        });
+    });
+});
