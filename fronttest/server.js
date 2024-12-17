@@ -206,3 +206,44 @@ app.get('/check-session', (req, res) => {
         });
     }
 });
+// Route pour ajouter une réservation dans la table "tickets"
+app.post('/submit-reservation', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Utilisateur non connecté.' });
+    }
+
+    const { num_tickets, visit_date } = req.body;
+
+    // Validation des données
+    if (!num_tickets || !visit_date) {
+        return res.status(400).json({ success: false, message: 'Données invalides.' });
+    }
+
+    // Requête pour récupérer l'user_id en fonction du username dans la session
+    db.query('SELECT id FROM users WHERE username = ?', [req.session.user], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération de l\'user_id:', err);
+            return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Utilisateur non trouvé.' });
+        }
+
+        const userId = results[0].id;
+
+        // Insérer la réservation dans la table "tickets"
+        const query = `
+            INSERT INTO tickets (user_id, num_tickets, visit_date, purchased_at)
+            VALUES (?, ?, ?, NOW())
+        `;
+        db.query(query, [userId, num_tickets, visit_date], (err) => {
+            if (err) {
+                console.error('Erreur lors de l\'insertion de la réservation:', err);
+                return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+            }
+
+            res.json({ success: true, message: 'Réservation ajoutée avec succès.' });
+        });
+    });
+});
