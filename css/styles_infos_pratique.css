@@ -26,7 +26,7 @@ body {
     font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-image: url("../images/fond2.jpg");
+    background-image: url("images/fond2.jpg");
     background-size: cover;  /* Couvre toute la surface */
     background-position: center;  /* Centre l'image */
     background-repeat: no-repeat;  /* Empêche la répétition de l'image */
@@ -95,7 +95,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('../images/fond4.png');
+    background-image: url('images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -187,7 +187,7 @@ nav ul li a:hover {
 /* Styles pour la première section : À savoir avant votre visite */
 .avant-visite {
     height: 500px;
-    background-image: url('../images/avant_visite_fond.jpg'); /* À remplacer par votre image */
+    background-image: url('images/avant_visite_fond.jpg'); /* À remplacer par votre image */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -261,16 +261,64 @@ nav ul li a:hover {
 }
 
 .paragraphes-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.paragraphes-container > div {
+    width: 30%;
+    padding: 0 1rem;
     text-align: center;
 }
 
-.paragraphes-container p {
+.titre-reglement, .titre-recyclage {
+    color: rgb(234, 197, 29);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.liste-reglement {
+    list-style-type: none;
+    text-align: left;
     color: white;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    padding-left: 0;
+}
+
+.liste-reglement li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.liste-reglement li::before {
+    content: '•';
+    color: rgb(234, 197, 29);
+    position: absolute;
+    left: 0;
+}
+
+.paragraphe-consignes .consigne-importante {
+    color: red;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.paragraphe-consignes p {
+    text-align: left;
+}
+
+.paragraphe-recyclage p {
+    color: white;
+    text-align: left;
+}
+
+.titre-recyclage {
+    font-weight: bold;
 }
 
 /* Styles précédents restent identiques, et ajout des styles suivants */
