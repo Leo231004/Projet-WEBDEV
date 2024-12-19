@@ -382,3 +382,66 @@ app.get('/check-admin', (req, res) => {
         res.json({ success: true, message: 'Accès admin confirmé.', username: req.session.user, role });
     });
 });
+app.post('/admin/update-enclosure-status', (req, res) => {
+    const { enclosure_id, status } = req.body;
+
+    if (!enclosure_id || !status) {
+        return res.status(400).json({ success: false, message: 'Tous les champs sont requis.' });
+    }
+
+    const validStatuses = ['ouvert', 'en travaux'];
+    if (!validStatuses.includes(status)) {
+        return res.status(400).json({ success: false, message: 'Statut invalide.' });
+    }
+
+    const query = 'UPDATE enclosures SET status = ? WHERE enclosure_id = ?';
+    db.query(query, [status, enclosure_id], (err, result) => {
+        if (err) {
+            console.error('Erreur mise à jour statut enclos :', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Enclos non trouvé.' });
+        }
+
+        res.json({ success: true, message: 'Statut de l\'enclos mis à jour avec succès.' });
+    });
+});
+app.get('/admin/enclosure-details', ensureAdmin, (req, res) => {
+    const query = `
+        SELECT 
+            e.enclosure_id, 
+            e.status, 
+            e.feeding_schedule, 
+            GROUP_CONCAT(a.name SEPARATOR ', ') AS animals
+        FROM enclosures e
+        LEFT JOIN animals a ON e.enclosure_id = a.enclosure_id
+        GROUP BY e.enclosure_id
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des détails des enclos :', err);
+            return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+        }
+
+        res.json({ success: true, enclosures: results });
+    });
+});
+
+app.get('/admin/animal-details', ensureAdmin, (req, res) => {
+    const query = `
+        SELECT animal_id, name
+        FROM animals
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des animaux :', err);
+            return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+        }
+
+        res.json({ success: true, animals: results });
+    });
+});

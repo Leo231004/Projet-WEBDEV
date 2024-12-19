@@ -96,3 +96,45 @@ footer {
     color: #777;
     margin-top: 2rem;
 }
+#update-enclosure-status-section {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #FFEB3B; /* Jaune clair */
+    border: 1px solid #FBC02D;
+    border-radius: 8px;
+}
+
+#update-enclosure-status-section h2 {
+    color: #333;
+}
+
+#update-enclosure-status-section select {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#enclosure-management-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #FFECB3; /* Jaune pâle */
+    border: 1px solid #FFC107;
+    border-radius: 8px;
+}
+
+#enclosure-management-section select {
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#enclosure-details {
+    background-color: #FFF8E1;
+    border: 1px solid #FFC107;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
