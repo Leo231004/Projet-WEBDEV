@@ -1,72 +1,65 @@
 <?php
-// Paramètres de connexion à la base de données
-$servername = "localhost";  // à adapter si nécessaire
-$username = "root";         // votre nom d'utilisateur MySQL
-$password = "";             // votre mot de passe MySQL
-$dbname = "parc_animalier"; // le nom de votre base de données
+header('Content-Type: application/json');
 
-// Créer une connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'parc_animalier';
 
-// Vérifier la connexion
+$conn = new mysqli($host, $user, $password, $dbname);
+
 if ($conn->connect_error) {
-    die("Erreur de connexion : " . $conn->connect_error);
+    die(json_encode(['error' => 'Erreur de connexion à la base de données']));
 }
 
-// Requête pour récupérer les informations des enclos, des animaux et des biomes
 $sql = "
-    SELECT
+    SELECT 
         enclosures.enclosure_id,
+        enclosures.biome_id,
         enclosures.position_x,
         enclosures.position_y,
+        enclosures.neighbor_1_id,
+        enclosures.neighbor_2_id,
+        enclosures.distance_to_neighbor_1,
+        enclosures.distance_to_neighbor_2,
+        enclosures.feeding_schedule, -- Ajout des horaires de nourrissage
         biomes.name AS biome_name,
-        biomes.description AS biome_description,
-        biomes.color_code AS biome_color_code,
-        animals.name AS animal_name,
-        animals.description AS animal_description
+        GROUP_CONCAT(animals.animal_id) AS animal_ids,
+        GROUP_CONCAT(animals.name) AS animal_names,
+        GROUP_CONCAT(animals.description) AS animal_descriptions
     FROM enclosures
     LEFT JOIN animals ON enclosures.enclosure_id = animals.enclosure_id
     LEFT JOIN biomes ON enclosures.biome_id = biomes.id
+    GROUP BY enclosures.enclosure_id
 ";
+
 $result = $conn->query($sql);
 
-// Tableau pour stocker les données des enclos
-$enclosures = array();
-
 if ($result->num_rows > 0) {
-    // Sortie des données de chaque ligne
+    $enclosures = [];
+
     while ($row = $result->fetch_assoc()) {
-        $enclosure_id = $row['enclosure_id'];
-
-        // Si l'enclos n'existe pas encore dans le tableau, l'initialiser
-        if (!isset($enclosures[$enclosure_id])) {
-            $enclosures[$enclosure_id] = [
-                'enclosure_id' => $enclosure_id,
-                'position_x' => $row['position_x'],
-                'position_y' => $row['position_y'],
-                'biome_name' => $row['biome_name'],
-                'biome_description' => $row['biome_description'],
-                'biome_color_code' => $row['biome_color_code'],
-                'animals' => []
-            ];
-        }
-
-        // Ajouter l'animal à l'enclos
-        if (!empty($row['animal_name'])) {
-            $enclosures[$enclosure_id]['animals'][] = [
-                'name' => $row['animal_name'],
-                'description' => $row['animal_description']
-            ];
-        }
+        $enclosures[] = [
+            'enclosure_id' => $row['enclosure_id'],
+            'biome_id' => $row['biome_id'],
+            'biome_name' => $row['biome_name'],
+            'position_x' => $row['position_x'],
+            'position_y' => $row['position_y'],
+            'neighbor_1_id' => $row['neighbor_1_id'],
+            'neighbor_2_id' => $row['neighbor_2_id'],
+            'distance_to_neighbor_1' => $row['distance_to_neighbor_1'],
+            'distance_to_neighbor_2' => $row['distance_to_neighbor_2'],
+            'feeding_schedule' => $row['feeding_schedule'], // Ajout des horaires
+            'animal_ids' => $row['animal_ids'] ? explode(',', $row['animal_ids']) : [],
+            'animal_names' => $row['animal_names'] ? explode(',', $row['animal_names']) : [],
+            'animal_descriptions' => $row['animal_descriptions'] ? explode(',', $row['animal_descriptions']) : []
+        ];
     }
+
+    echo json_encode($enclosures);
 } else {
-    echo json_encode(['error' => 'Aucun enclos trouvé']);
-    exit();
+    echo json_encode([]);
 }
 
-// Renvoyer les données au format JSON
-echo json_encode(array_values($enclosures));
-
-// Fermer la connexion à la base de données
 $conn->close();
 ?>

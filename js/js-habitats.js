@@ -1,45 +1,23 @@
-// panneau deroulant
 document.addEventListener('DOMContentLoaded', () => {
-    const servicesLink = document.querySelector('nav ul li a[href="services.html"]');
-    const servicesDropdown = document.createElement('div');
-    servicesDropdown.classList.add('services-dropdown');
-    
-    servicesDropdown.innerHTML = `
-        <ul>
-            <li><a href="billetterie.html">Billetterie</a></li>
-            <li><a href="recherche.html">Pour vous reperer</a></li>
-        </ul>
-    `;
-    
-    servicesLink.parentElement.appendChild(servicesDropdown);
-});
+    const biomeList = document.getElementById('biomeList'); // Conteneur des cartes de biomes
+    const leaveReviewBtn = document.getElementById('leave-review-btn'); // Bouton pour laisser un avis
+    const reviewCard = document.getElementById('review-card'); // Carte pour laisser un avis
+    const reviewForm = document.getElementById('review-form'); // Formulaire d'avis
+    const enclosureSelect = document.getElementById('enclosure-select'); // Sélecteur pour les enclos
 
-// Initialisation du carrousel lors du chargement du document
-document.addEventListener('DOMContentLoaded', () => {
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-        new Carousel(carouselContainer);
-    }
-});
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
+    // Charger les données des enclos depuis le backend
     fetch('get_enclosures.php')
         .then(response => response.json())
         .then(data => {
-            if (data.error) {
-                console.error(data.error);
+            if (!data || data.error) {
+                console.error('Erreur récupération des données:', data.error || 'Aucune donnée');
                 return;
             }
 
-            // Filtrer les enclos pour ne conserver que ceux avec enclosure_id < 51
-            const filteredEnclosures = data.filter(enclosure => enclosure.enclosure_id<67);
-
             // Grouper les enclos par biome
             const biomes = {};
-            filteredEnclosures.forEach(enclosure => {
-                const biomeName = enclosure.biome_name;
+            data.forEach(enclosure => {
+                const biomeName = enclosure.biome_name || `Biome ${enclosure.biome_id}`;
                 if (!biomes[biomeName]) {
                     biomes[biomeName] = {
                         name: biomeName,
@@ -49,158 +27,125 @@ document.addEventListener('DOMContentLoaded', () => {
                 biomes[biomeName].enclosures.push(enclosure);
             });
 
-            const biomeList = document.getElementById('biomeList');
-
-            // Fonction pour afficher la liste des biomes
+            // Fonction pour afficher les biomes
             function renderBiomes() {
-                biomeList.innerHTML = ''; // Vider la liste avant de la remplir
-
+                biomeList.innerHTML = '';
                 Object.values(biomes).forEach(biome => {
                     const biomeCard = document.createElement('div');
-                    biomeCard.classList.add('enclosure-card');
+                    biomeCard.classList.add('postcard'); // Appliquer le style postcard
+                    biomeCard.classList.add('enslosure-card'); // Classe supplémentaire pour les biomes
 
                     let enclosuresHtml = '<ul>';
                     biome.enclosures.slice(0, 3).forEach(enclosure => {
                         enclosuresHtml += `
-                            <li class="animal-item">
-                                <strong>Enclos ${enclosure.enclosure_id}</strong> - ${enclosure.animals && enclosure.animals.length > 0 ? enclosure.animals.slice(0, 3).map(animal => `${animal.name}`).join(', ') : 'Aucun animal'}
+                            <li class="enclosure-item">
+                                <strong>Enclos ${enclosure.enclosure_id}</strong> - ${
+                            enclosure.animal_names && enclosure.animal_names.length > 0
+                                ? enclosure.animal_names.slice(0, 3).join(', ')
+                                : 'Aucun animal'
+                        }
                             </li>
                         `;
                     });
                     enclosuresHtml += '</ul>';
 
                     biomeCard.innerHTML = `
-                        <div class="card-header">
-                            <h3>Biome : ${biome.name}</h3>
+                        <div class="postcard-header">
+                            <h3>${biome.name}</h3>
                         </div>
-                        <div class="animals-section">
-                            <h4>Enclos :</h4>
+                        <div class="postcard-content">
+                            <h4>Enclos en prévisualisation :</h4>
                             ${enclosuresHtml}
                         </div>
                     `;
 
+                    // Ajouter un gestionnaire d'événement pour afficher les enclos
+                    biomeCard.addEventListener('click', () => renderBiomeDetails(biome));
                     biomeList.appendChild(biomeCard);
-
-                    // Ajouter un gestionnaire d'événement pour rendre la carte cliquable
-                    biomeCard.addEventListener('click', () => {
-                        renderBiomeDetails(biome);
-                    });
                 });
             }
 
-            // Fonction pour afficher les enclos d'un biome spécifique
+            // Fonction pour afficher les détails d'un biome
             function renderBiomeDetails(biome) {
-                biomeList.innerHTML = ''; // Vider la liste
+                biomeList.innerHTML = '';
 
                 biome.enclosures.forEach(enclosure => {
-                    if (enclosure.enclosure_id < 51) {  // Filtrer pour être sûr de ne pas afficher les points d'intérêt
-                        const enclosureCard = document.createElement('div');
-                        enclosureCard.classList.add('enclosure-card', 'clickable');
+                    const enclosureCard = document.createElement('div');
+                    enclosureCard.classList.add('postcard'); // Appliquer le style postcard
+                    enclosureCard.classList.add('enclosure-card'); // Classe supplémentaire pour les enclos
 
-                        let carouselHtml = '<div class="carousel">';
-                        let animalInfoHtml = '<div class="animal-info-container">';
+                    let animalDetailsHtml = '<div class="animal-info">';
+                    let carouselHtml = '<div class="carousel">';
 
-                        if (enclosure.animals && enclosure.animals.length > 0) {
-                            enclosure.animals.forEach(animal => {
-                                // Ajouter chaque image dans le carrousel, avec un chemin dynamique basé sur le nom de l'animal
-                                const imageName = animal.name.replace(/ /g, "_");  // Remplacer les espaces par des underscores pour correspondre aux conventions de nommage des fichiers
-                                carouselHtml += `
-                                    <div class="carousel-item">
-                                        <img src="./images/${imageName}.jpg" alt="${animal.name}" class="animal-image">
-                                    </div>
-                                `;
-                                // Ajouter les informations des animaux sur la droite
-                                animalInfoHtml += `
-                                    <div class="animal-info">
-                                        <h4>${animal.name}</h4>
-                                        <p>${animal.description}</p>
-                                    </div>
-                                `;
-                            });
-                        } else {
-                            carouselHtml += '<div class="carousel-item">Aucun animal dans cet enclos.</div>';
-                        }
-
-                        carouselHtml += '</div>';
-                        animalInfoHtml += '</div>';
-
-                        enclosureCard.innerHTML = `
-                            <div class="card-header">
-                                <h3>Enclos ${enclosure.enclosure_id}</h3>
-                            </div>
-                            <div class="enclosure-details-expanded">
-                                ${carouselHtml}
-                                ${animalInfoHtml}
-                            </div>
-                        `;
-
-                        biomeList.appendChild(enclosureCard);
-
-                        // Ajouter un gestionnaire de clic pour agrandir la carte et afficher le carrousel et les détails des animaux
-                        enclosureCard.addEventListener('click', () => {
-                            enclosureCard.classList.add('expanded');
+                    if (enclosure.animal_names && enclosure.animal_names.length > 0) {
+                        enclosure.animal_names.forEach((name, index) => {
+                            const description = enclosure.animal_descriptions[index] || 'Pas de description.';
+                            const imageName = name.replace(/ /g, '_');
+                            carouselHtml += `
+                                <div class="carousel-item">
+                                    <img src="./images/${imageName}.jpg" alt="${name}" class="animal-image">
+                                </div>
+                            `;
+                            animalDetailsHtml += `
+                                <div class="animal-info-item">
+                                    <h4>${name}</h4>
+                                    <p>${description}</p>
+                                </div>
+                            `;
                         });
-
-                        // Ajouter un bouton pour fermer la vue agrandie
-                        const closeButton = document.createElement('button');
-                        closeButton.classList.add('close-button');
-                        closeButton.textContent = 'Fermer';
-                        closeButton.addEventListener('click', (event) => {
-                            event.stopPropagation();
-                            enclosureCard.classList.remove('expanded');
-                        });
-                        enclosureCard.appendChild(closeButton);
+                    } else {
+                        carouselHtml += '<div class="carousel-item">Aucun animal dans cet enclos.</div>';
                     }
+
+                    carouselHtml += '</div>';
+                    animalDetailsHtml += '</div>';
+
+                    enclosureCard.innerHTML = `
+                        <div class="postcard-header">
+                            <h3>Enclos ${enclosure.enclosure_id}</h3>
+                            <p class="feeding-schedule">Horaires de repas : ${enclosure.feeding_schedule || 'Non définis'}</p>
+                        </div>
+                        <div class="postcard-content">
+                            ${carouselHtml}
+                            ${animalDetailsHtml}
+                        </div>
+                    `;
+
+                    biomeList.appendChild(enclosureCard);
                 });
 
-                // Bouton de retour aux biomes
+                // Bouton retour aux biomes
                 const backButton = document.createElement('button');
                 backButton.classList.add('back-button');
                 backButton.textContent = 'Retour aux biomes';
-                backButton.addEventListener('click', () => {
-                    renderBiomes();
-                });
-
+                backButton.addEventListener('click', renderBiomes);
                 biomeList.appendChild(backButton);
             }
 
-            // Initialement, afficher la liste des biomes
+            // Initialiser avec les biomes
             renderBiomes();
         })
-        .catch(error => console.error('Erreur lors de la récupération des enclos :', error));
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const leaveReviewBtn = document.getElementById('leave-review-btn');
-    const reviewCard = document.getElementById('review-card');
-    const reviewForm = document.getElementById('review-form');
-    const enclosureSelect = document.getElementById('enclosure-select');
+        .catch(error => console.error('Erreur chargement biomes:', error));
 
-    // Étape 1 : Charger les enclos pour le volet déroulant
+    // Charger les enclos pour le menu déroulant
     fetch('get_enclosures.php')
         .then(response => response.json())
         .then(data => {
-            if (data.error) {
-                console.error('Erreur récupération des enclos:', data.error);
-                return;
-            }
-
-            // Ajouter les enclos dans le menu déroulant
             data.forEach(enclosure => {
                 const option = document.createElement('option');
                 option.value = enclosure.enclosure_id;
-                option.textContent = `Enclos ${enclosure.enclosure_id} (${enclosure.animals.map(a => a.name).join(', ')})`;
+                option.textContent = `Enclos ${enclosure.enclosure_id} (${enclosure.animal_names.join(', ')})`;
                 enclosureSelect.appendChild(option);
             });
-        })
-        .catch(error => console.error('Erreur chargement enclos:', error));
+        });
 
-    // Étape 2 : Gérer l'affichage du formulaire
+    // Gestion affichage formulaire d'avis
     leaveReviewBtn.addEventListener('click', () => {
-        document.querySelectorAll('.enclosure-card').forEach(card => card.style.display = 'none');
+        document.querySelectorAll('.postcard').forEach(card => card.style.display = 'none');
         reviewCard.classList.remove('hidden');
     });
 
-    // Étape 3 : Soumettre le formulaire d'avis
+    // Gestion soumission avis
     reviewForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -208,21 +153,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const rating = document.getElementById('rating').value;
         const comment = document.getElementById('comment').value;
 
+        if (!enclosureId || !rating || !comment) {
+            alert('Veuillez remplir tous les champs.');
+            return;
+        }
+
         fetch('http://localhost:3000/submit-review', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include', // Nécessaire pour la session
+            credentials: 'include',
             body: JSON.stringify({ enclosure_id: enclosureId, rating, comment })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Avis soumis avec succès !');
-                window.location.reload();
-            } else {
-                alert('Erreur : ' + data.message);
-            }
-        })
-        .catch(error => console.error('Erreur soumission avis:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Avis soumis avec succès !');
+                    window.location.reload();
+                } else {
+                    alert('Erreur : ' + data.message);
+                }
+            })
+            .catch(error => console.error('Erreur soumission avis:', error));
     });
 });
