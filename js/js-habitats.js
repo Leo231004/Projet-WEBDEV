@@ -176,3 +176,131 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Erreur soumission avis:', error));
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("search-input");
+    const suggestionBox = document.getElementById("suggestion-box");
+    const popupCard = document.getElementById("popup-card");
+    const popupClose = document.querySelector(".popup-close");
+    const animalImage = document.getElementById("animal-image");
+    const animalName = document.getElementById("animal-name");
+    const animalDescription = document.getElementById("animal-description");
+    const enclosureInfo = document.getElementById("enclosure-info");
+
+    // Fetch suggestions as user types
+    searchInput.addEventListener("input", async (e) => {
+        const query = e.target.value.trim();
+        if (query.length === 0) {
+            suggestionBox.innerHTML = "";
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3000/suggest-animals?name=${query}`);
+            if (!response.ok) throw new Error("Failed to fetch suggestions.");
+
+            const suggestions = await response.json();
+            suggestionBox.innerHTML = suggestions
+                .map((animal) => `<div data-name="${animal.name}">${animal.name}</div>`)
+                .join("");
+
+            suggestionBox.querySelectorAll("div").forEach((item) => {
+                item.addEventListener("click", () => {
+                    fetchAnimalDetails(item.getAttribute("data-name"));
+                });
+            });
+        } catch (error) {
+            console.error("Error fetching suggestions:", error);
+        }
+    });
+
+    // Fetch animal details when selected
+    async function fetchAnimalDetails(animalName) {
+        try {
+            // Fetch animal details from the backend
+            const response = await fetch(`http://localhost:3000/search-animal?name=${animalName}`);
+            if (!response.ok) throw new Error("Failed to fetch animal details.");
+    
+            // Parse the JSON response
+            const animal = await response.json();
+    
+            // Ensure elements exist in the DOM
+            const animalImage = document.getElementById("animal-image");
+            const animalNameElement = document.getElementById("animal-name");
+            const animalDescription = document.getElementById("animal-description");
+            const enclosureInfo = document.getElementById("enclosure-info");
+    
+            if (!animalImage || !animalNameElement || !animalDescription || !enclosureInfo) {
+                console.error("One or more popup elements are missing!");
+                return;
+            }
+    
+            // Update popup content with fetched data
+            animalImage.src = animal.image_url || "default-image.jpg"; // Use a default image if not provided
+            animalNameElement.textContent = animal.animal_name; // Updated field from backend
+            animalDescription.textContent = animal.animal_description; // Updated field from backend
+            enclosureInfo.textContent = `Enclosure ID: ${animal.enclosure_id}, Biome ID: ${animal.biome_id}, Feeding Schedule: ${animal.feeding_schedule}, Status: ${animal.status}`;
+    
+            // Show the popup
+            togglePopup(true);
+        } catch (error) {
+            console.error("Error fetching animal details:", error);
+        }
+    }
+    
+
+    // Show or hide popup
+    function togglePopup(show) {
+        popupCard.classList.toggle("hidden", !show);
+    }
+
+    // Close popup on click
+    popupClose.addEventListener("click", () => togglePopup(false));
+
+    // Close popup when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!popupCard.contains(e.target) && e.target !== searchInput) {
+            togglePopup(false);
+        }
+    });
+});
+async function loadEnclosuresUnderConstruction() {
+    try {
+        const response = await fetch('http://localhost:3000/enclosures-under-construction');
+        if (!response.ok) throw new Error('Failed to fetch enclosures under construction.');
+
+        const enclosures = await response.json();
+
+        const enclosuresList = document.getElementById('enclosures-list');
+        if (!enclosuresList) {
+            console.error("Element #enclosures-list not found!");
+            return;
+        }
+
+        enclosuresList.innerHTML = ''; // Clear existing list
+
+        enclosures.forEach(enclosure => {
+            const listItem = document.createElement('li');
+
+            const enclosureInfo = document.createElement('p');
+            enclosureInfo.textContent = `Enclosure ID: ${enclosure.enclosure_id}, Feeding Schedule: ${enclosure.feeding_schedule}`;
+
+            const animalsList = document.createElement('ul');
+            animalsList.style.marginLeft = '20px';
+            enclosure.animals.forEach(animal => {
+                const animalItem = document.createElement('li');
+                animalItem.textContent = animal;
+                animalsList.appendChild(animalItem);
+            });
+
+            listItem.appendChild(enclosureInfo);
+            listItem.appendChild(animalsList);
+            enclosuresList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error loading enclosures under construction:', error);
+    }
+}
+
+// Call the function after the page loads
+document.addEventListener('DOMContentLoaded', loadEnclosuresUnderConstruction);
+

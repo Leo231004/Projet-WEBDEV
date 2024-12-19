@@ -445,3 +445,96 @@ app.get('/admin/animal-details', ensureAdmin, (req, res) => {
         res.json({ success: true, animals: results });
     });
 });
+// Suggest Animals Route
+app.get('/suggest-animals', (req, res) => {
+    const query = req.query.name;
+    if (!query) {
+        return res.status(400).json({ error: "Query parameter 'name' is required" });
+    }
+
+    const sql = "SELECT name FROM animals WHERE name LIKE ?";
+    const values = [`%${query}%`];
+
+    db.query(sql, values, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Database query failed" });
+        }
+        res.json(results);
+    });
+});
+
+// Search Animal Details Route
+app.get('/search-animal', (req, res) => {
+    const name = req.query.name;
+    if (!name) {
+        return res.status(400).json({ error: "Query parameter 'name' is required" });
+    }
+
+    const sql = `
+        SELECT 
+            animals.name AS animal_name,
+            animals.description AS animal_description,
+            enclosures.enclosure_id,
+            enclosures.biome_id,
+            enclosures.feeding_schedule,
+            enclosures.status
+        FROM animals
+        JOIN enclosures ON animals.enclosure_id = enclosures.enclosure_id
+        WHERE animals.name = ?
+    `;
+    const values = [name];
+
+    db.query(sql, values, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Database query failed" });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: "Animal not found" });
+        }
+
+        res.json(results[0]);
+    });
+});
+// Route to get enclosures "en travaux" with their animals
+app.get('/enclosures-under-construction', (req, res) => {
+    const sql = `
+        SELECT 
+            enclosures.enclosure_id,
+            enclosures.feeding_schedule,
+            animals.name AS animal_name
+        FROM enclosures
+        LEFT JOIN animals ON enclosures.enclosure_id = animals.enclosure_id
+        WHERE enclosures.status = 'en travaux'
+        ORDER BY enclosures.enclosure_id
+    `;
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Database query failed" });
+        }
+
+        const groupedData = results.reduce((acc, row) => {
+            const { enclosure_id, feeding_schedule, animal_name } = row;
+
+            if (!acc[enclosure_id]) {
+                acc[enclosure_id] = {
+                    enclosure_id,
+                    feeding_schedule,
+                    animals: []
+                };
+            }
+
+            if (animal_name) {
+                acc[enclosure_id].animals.push(animal_name);
+            }
+
+            return acc;
+        }, {});
+
+        res.json(Object.values(groupedData));
+    });
+});

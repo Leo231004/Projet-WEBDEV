@@ -33,38 +33,39 @@
                 </ul>
             </nav>
     </header>
-
+    <div class="search-container">
+        <input id="search-input" type="text" placeholder="Entrez un nom d'animal" />
+        <div id="suggestion-box" class="suggestion-box"></div>
+    </div>
+    
+    <div id="popup-card" class="popup-card hidden">
+        <div class="popup-header">
+            <span id="animal-name">Animal Name</span>
+            <button class="popup-close">X</button>
+        </div>
+        <div class="popup-content">
+            <img id="animal-image" src="default-image.jpg" alt="Animal Image">
+            <p id="animal-description">Description...</p>
+            <p id="enclosure-info">Enclosure Info...</p>
+        </div>
+    </div>
+     
+<!-------------------------------------------------------------------------------------------------------   -->    
     <main role="main">
         <section id="biomeList" class="enclosure-list">
             <!-- Les biomes seront injectés ici par JavaScript -->
         </section>
     </main>
+       <!-- Add this after the main section -->
+  
+  
     <!-- Bouton pour laisser un avis -->
 <div class="review-section">
     <button id="leave-review-btn" class="cta-button2">Laissez votre avis</button>
 </div>
-
-<!-- Carte d'avis cachée -->
-<div id="review-card" class="enclosure-list">
-    <div class="postcard">
-        <h3>Donnez votre avis</h3>
-        <form id="review-form">
-            <!-- Sélection d'enclos -->
-            <label for="enclosure-select">Enclos :</label>
-            <select id="enclosure-select" name="enclosure_id" required></select>
-
-            <!-- Note -->
-            <label for="rating">Note (sur 5) :</label>
-            <input type="number" id="rating" name="rating" min="1" max="5" required>
-
-            <!-- Commentaire -->
-            <label for="comment">Commentaire :</label>
-            <textarea id="comment" name="comment" rows="4" required></textarea>
-
-            <!-- Bouton d'envoi -->
-            <button type="submit" class="cta-button2">Soumettre</button>
-        </form>
-    </div>
+<div id="enclosures-under-construction-section">
+    <h3>Enclos en travaux</h3>
+    <ul id="enclosures-list"></ul>
 </div>
 
     <footer class="footer">
@@ -100,7 +101,6 @@
             <p>© 2015 Parc animalier de la barben. Tous droits réservés.</p>
         </div>
     </footer>
-
     <script src="js/js-habitats.js?v=1.3"></script>
 </body>
 </html>
