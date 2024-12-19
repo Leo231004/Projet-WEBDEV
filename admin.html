@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneau Administrateur</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="welcome-message">Chargement...</h1>
+
+    <section id="feeding-schedule-section">
+        <h2>Mettre à jour les horaires de nourrissage</h2>
+        <form id="feeding-schedule-form">
+            <label for="enclosure-id">ID de l'enclos :</label>
+            <input type="number" id="enclosure-id" name="enclosure_id" required>
+
+            <label for="feeding-schedule">Horaire de nourrissage :</label>
+            <input type="text" id="feeding-schedule" name="feeding_schedule" required>
+
+            <button type="submit">Mettre à jour</button>
+        </form>
+    </section>
+
+    <section id="move-animal-section">
+        <h2>Déplacer un animal</h2>
+        <form id="move-animal-form">
+            <label for="animal-id">ID de l'animal :</label>
+            <input type="number" id="animal-id" name="animal_id" required>
+
+            <label for="new-enclosure-id">ID du nouvel enclos :</label>
+            <input type="number" id="new-enclosure-id" name="new_enclosure_id" required>
+
+            <button type="submit">Déplacer</button>
+        </form>
+    </section>
+
+    <script src="./js/admin.js"></script>
+</body>
+</html>

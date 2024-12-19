@@ -25,6 +25,28 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 * 60, httpOnly: true } // 1 heure, sécuriser le cookie
 }));
+// Middleware pour vérifier si l'utilisateur est administrateur
+function ensureAdmin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Non authentifié.' });
+    }
+
+    // Vérification du rôle de l'utilisateur dans la base de données
+    db.query('SELECT role FROM users WHERE username = ?', [req.session.user], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la vérification du rôle :', err);
+            return res.status(500).json({ success: false, message: 'Erreur serveur.' });
+        }
+
+        if (results.length === 0 || results[0].role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Accès interdit. Vous n\'êtes pas administrateur.' });
+        }
+
+        // Si tout est bon, passer au middleware suivant ou à la route
+        next();
+    });
+}
+
 
 // Connexion à la base de données MySQL
 const db = mysql.createConnection({
@@ -282,5 +304,81 @@ app.post('/submit-review', (req, res) => {
 
             res.json({ success: true, message: 'Avis soumis avec succès.' });
         });
+    });
+});
+app.get('/admin/enclosures', ensureAdmin, (req, res) => {
+    db.query('SELECT * FROM enclosures', (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des enclos:', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+        res.json({ success: true, enclosures: results });
+    });
+});
+// Route pour mettre à jour les horaires de nourrissage
+app.post('/admin/update-feeding-schedule', ensureAdmin, (req, res) => {
+    const { enclosure_id, feeding_schedule } = req.body;
+
+    db.query('UPDATE enclosures SET feeding_schedule = ? WHERE enclosure_id = ?', [feeding_schedule, enclosure_id], (err) => {
+        if (err) {
+            console.error('Erreur lors de la mise à jour des horaires:', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+        res.json({ success: true, message: 'Horaire mis à jour avec succès.' });
+    });
+});
+
+// Route pour déplacer un animal
+app.post('/admin/move-animal', ensureAdmin, (req, res) => {
+    const { animal_id, new_enclosure_id } = req.body;
+
+    db.query('UPDATE animals SET enclosure_id = ? WHERE animal_id = ?', [new_enclosure_id, animal_id], (err) => {
+        if (err) {
+            console.error('Erreur lors du déplacement de l\'animal:', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+        res.json({ success: true, message: 'Animal déplacé avec succès.' });
+    });
+});
+
+function ensureAdmin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Non authentifié.' });
+    }
+
+    db.query('SELECT role FROM users WHERE username = ?', [req.session.user], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la vérification du rôle :', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+
+        if (results.length === 0 || results[0].role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Accès interdit. Vous n\'êtes pas administrateur.' });
+        }
+
+        next(); // Autorise l'accès si l'utilisateur est admin
+    });
+}
+app.get('/check-admin', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ success: false, message: 'Non authentifié.' });
+    }
+
+    db.query('SELECT role FROM users WHERE username = ?', [req.session.user], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la vérification du rôle :', err);
+            return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Utilisateur introuvable.' });
+        }
+
+        const role = results[0].role;
+        if (role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Accès interdit. Vous n\'êtes pas administrateur.' });
+        }
+
+        res.json({ success: true, message: 'Accès admin confirmé.', username: req.session.user, role });
     });
 });
