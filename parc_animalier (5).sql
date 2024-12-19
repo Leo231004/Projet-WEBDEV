@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 19 déc. 2024 à 18:08
+-- Généré le : jeu. 19 déc. 2024 à 23:43
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -182,7 +182,7 @@ INSERT INTO `enclosures` (`enclosure_id`, `biome_id`, `position_x`, `position_y`
 (10, 1, 5.21278, 43.6228, 9, 4, 3, 50, 'Non défini', 'ouvert'),
 (11, 1, 5.20991, 43.623, 12, 33, 12, 63, 'Non défini', 'ouvert'),
 (12, 1, 5.21023, 43.6229, 11, 14, 12, 84, 'Non défini', 'ouvert'),
-(13, 1, 5.21099, 43.6228, 51, 8, 4, 6, 'Non défini', 'ouvert'),
+(13, 1, 5.21099, 43.6228, 51, 8, 4, 6, 'Non défini', 'en travaux'),
 (14, 1, 5.21117, 43.6224, 17, 53, 4, 2, 'Non défini', 'ouvert'),
 (15, 2, 5.20973, 43.6225, 16, 20, 2, 92, '17h', 'ouvert'),
 (16, 2, 5.20961, 43.6222, 15, 17, 2, 72, 'Non défini', 'ouvert'),
@@ -194,7 +194,7 @@ INSERT INTO `enclosures` (`enclosure_id`, `biome_id`, `position_x`, `position_y`
 (22, 3, 5.20755, 43.623, 21, 55, 21, 17, 'Non défini', 'ouvert'),
 (23, 3, 5.20704, 43.6233, 24, 25, 3, 13, 'Non défini', 'ouvert'),
 (24, 3, 5.20683, 43.6231, 23, 25, 3, 13, 'Non défini', 'ouvert'),
-(25, 3, 5.20674, 43.6237, 23, 24, 13, 14, 'Non défini', 'ouvert'),
+(25, 3, 5.20674, 43.6237, 23, 24, 13, 14, '9h', 'ouvert'),
 (26, 3, 5.20557, 43.6261, 27, 28, 4, 13, 'Non défini', 'ouvert'),
 (27, 3, 5.20529, 43.6263, 26, 28, 4, 3, 'Non défini', 'ouvert'),
 (28, 3, 5.20515, 43.6264, 27, 26, 4, 12, 'Non défini', 'ouvert'),
