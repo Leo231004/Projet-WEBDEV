@@ -25,8 +25,14 @@
 body {
     font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
+    background-image: url("../images/fond2.jpg");
+    background-size: cover;  /* Couvre toute la surface */
+    background-position: center;  /* Centre l'image */
+    background-repeat: no-repeat;  /* Empêche la répétition de l'image */
+    background-attachment: fixed;  /* Fixe l'image, elle ne bouge pas lors du scroll */
+    min-height: 100vh;  /* Assure que le fond couvre au moins toute la hauteur de la fenêtre */
+    background-blend-mode: darken;
+    background-color:  rgba(0,0,0,0.55);
 }
 
 .cta-button {
@@ -46,25 +52,25 @@ body {
     }
 
 
-.cta-button2 {
-    background-color: #1e6322;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 20px; /* Augmenté à 20 pixels pour un bouton plus arrondi */
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    }
-    .cta-button2:hover {
-    background-color: #1e6322;
-    }
+    .cta-button2 {
+        background-color: #1e6322;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 20px; /* Augmenté à 20 pixels pour un bouton plus arrondi */
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        }
+        .cta-button2:hover {
+        background-color: #1e6322;
+        }
 
 /* En-tête */
 header {
-    background-image: url('images/fond4.png');
+    background-image: url('../images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;

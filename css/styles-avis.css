@@ -27,13 +27,11 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-image: url("../images/fond2.jpg");
-    background-size: cover;  /* Couvre toute la surface */
-    background-position: center;  /* Centre l'image */
-    background-repeat: no-repeat;  /* Empêche la répétition de l'image */
-    background-attachment: fixed;  /* Fixe l'image, elle ne bouge pas lors du scroll */
-    min-height: 100vh;  /* Assure que le fond couvre au moins toute la hauteur de la fenêtre */
-    background-blend-mode: darken;
-    background-color:  rgba(0,0,0,0.55);
+    background-size: cover;  
+    background-position: center;  
+    background-repeat: no-repeat;  
+    background-attachment: fixed;  
+    min-height: 100vh;  
 }
 
 .cta-button {
@@ -144,75 +142,6 @@ nav ul li .cta-button2 {
     
 }
 
-/* Ajout de cette règle spécifique */
-nav ul li:last-child .cta-button2 {
-    margin-left: 300px; /* Augmente l'espace avant le bouton Connexion */
-}
-
-.nav {
-    order: -1;
-    display: flex;
-    align-items: center;
-}
-
-nav ul li a:hover {
-    background-color: transparent; /* Supprime le changement de fond */
-    color: rgb(234, 197, 29); /* Change uniquement la couleur du texte */
-}
-
-
-/* Sections génériques */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.section-header p {
-    color: var(--text-color);
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-
-/* Responsive */
-@media (max-width: 768px) {
-    .header-container,
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .video-banner {
-        height: 300px;
-    }
-
-    .video-banner-content h2 {
-        font-size: 2.5rem;
-    }
-
-    .info-content {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
 /* Footer */
 .footer {
     background-color: #132218;
@@ -259,14 +188,9 @@ main {
 }
 
 
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: rgb(234, 197, 29);
-}
 
-/* Styles pour le menu déroulant*/
+
+/* Styles pour le menu déroulant Services */
 nav ul li {
     position: relative;
 }
@@ -311,123 +235,128 @@ nav ul li:hover .services-dropdown {
 }
 
 
-/* Ticket Purchase Page Specific Styles */
-.ticket-form-container {
-    background-color: var(--card-background);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    box-shadow: var(--card-shadow);
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.ticket-options {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-lg);
-}
-
-.ticket-type-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-}
-
-.ticket-type-card {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-md);
-    text-align: center;
-}
-
-.price-selector {
+/* Styles pour la section d'avis */
+.review-section {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    padding: var(--spacing-lg);
 }
 
-.quantity-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Style amélioré pour la carte d'avis */
+#review-card {
+    background: linear-gradient(145deg, #2c4a2c, #1e331e);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(166, 220, 166, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    transform: translateY(0);
+    transition: all 0.3s ease;
 }
 
-.quantity-btn:hover {
-    background-color: var(--secondary-color);
+#review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
-.quantity-input {
-    width: 50px;
+/* En-tête du formulaire plus attrayant */
+#review-card h2 {
+    font-size: 2.5rem;
+    color: #a6dca6;
     text-align: center;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.date-selection, .total-summary {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-md);
+#review-card p {
+    color: #d4e6d4;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
-#visit-date {
-    width: 100%;
-    padding: var(--spacing-sm);
-    background-color: var(--white);
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
+/* Style amélioré pour les champs de formulaire */
+.form-group {
+    margin-bottom: 1.8rem;
 }
 
-.additional-options {
-    margin-top: var(--spacing-lg);
-    display: flex;
-    justify-content: center;
-}
-
-.promo-code {
-    width: 100%;
-    max-width: 300px;
-}
-
-.promo-code input {
-    width: 100%;
-    padding: var(--spacing-sm);
-    border-radius: 4px;
-    border: 1px solid var(--primary-color);
-}
-
-.btn-submit {
+.form-group label {
+    color: #a6dca6;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
     display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: var(--spacing-lg) auto 0;
-    padding: var(--spacing-md);
-    background-color: var(--secondary-color);
-    color: var(--background-color);
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group textarea {
+   
+width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(166, 220, 166, 0.2);
+    border-radius: 12px;
+    color: #000000;  /* Changé de #ffffff à #000000 */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+}
+
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: rgba(166, 220, 166, 0.4);
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #63c163;
+    box-shadow: 0 0 0 3px rgba(99, 193, 99, 0.2);
+    outline: none;
+}
+
+/* Style amélioré pour le bouton d'envoi */
+#leave-review-btn {
+    background: linear-gradient(135deg, #63c163, #4da64d);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
-    border-radius: var(--border-radius);
-    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.btn-submit:hover {
-    background-color: #ffbc00;
+#leave-review-btn:hover {
+    background: linear-gradient(135deg, #4da64d, #3c8c3c);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 193, 99, 0.3);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .ticket-options {
-        grid-template-columns: 1fr;
+#leave-review-btn:active {
+    transform: translateY(0);
+}
+
+/* Animation d'apparition */
+.review-section {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    .ticket-type-grid {
-        grid-template-columns: 1fr;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

@@ -17,8 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 billeterieLink.parentElement.style.display = 'block';
             }
 
-            navContainer.innerHTML = `<a href="http://localhost:3000" class="cta-button2">Profil</a>
-                                       <span>Bienvenue, ${data.username}!</span>`;
+            navContainer.innerHTML = `<div class="header-container">
+            <span class="username-welcome">Bienvenue, ${data.username} !</span>
+            <a href="http://localhost:3000" class="cta-button2">Profil</a>
+        </div>`;
         }
     })
     .catch(err => console.error('Erreur vérification de session:', err));

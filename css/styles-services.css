@@ -26,7 +26,7 @@ body {
     font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-image: url("images/fond.jpg");
+    background-image: url("../images/fond.jpg");
     background-size: cover;  /* Couvre toute la surface */
     background-position: center;  /* Centre l'image */
     background-repeat: no-repeat;  /* Empêche la répétition de l'image */
@@ -69,7 +69,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/fond4.png');
+    background-image: url('../images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -207,48 +207,9 @@ nav ul li a:hover {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Animals section acceuil pour centrer le tout et reduire les bordure*/
-.animals {
-    padding: 4rem 2rem;
-    background-image: url('css/images/body.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    margin-top: -100px; /* Remonter la section */
-    padding-top: 6rem; /* Ajuster le padding pour compenser */
-    z-index: 10; /* S'assurer que la section est au-dessus des autres */
-}
 
-.animals::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(7, 18, 21, 0.7); /* Overlay semi-transparent */
-    z-index: -1; /* Placer l'overlay derrière le contenu */
-}
 
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary-color);
-}
 
-.animals-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1; /* Assurer que le contenu est au-dessus de l'overlay */
-    max-width: 1400px;
-    margin: 0 auto;
-}
 
 .section-title {
     text-align: center;

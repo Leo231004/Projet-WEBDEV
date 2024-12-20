@@ -26,7 +26,7 @@ body {
     font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-image: url("images/fond2.jpg");
+    background-image: url("../images/fond2.jpg");
     background-size: cover;  /* Couvre toute la surface */
     background-position: center;  /* Centre l'image */
     background-repeat: no-repeat;  /* Empêche la répétition de l'image */
@@ -95,7 +95,7 @@ body {
 
 /* En-tête */
 header {
-    background-image: url('images/fond4.png');
+    background-image: url('../images/fond4.png');
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -187,7 +187,7 @@ nav ul li a:hover {
 /* Styles pour la première section : À savoir avant votre visite */
 .avant-visite {
     height: 500px;
-    background-image: url('images/avant_visite_fond.jpg'); /* À remplacer par votre image */
+    background-image: url('../images/avant_visite_fond.jpg'); /* À remplacer par votre image */
     background-size: cover;
     background-position: center;
     display: flex;

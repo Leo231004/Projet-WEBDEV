@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoo de la Barben</title>
     <link rel="stylesheet" href="css/styles-services.css">
+    <link rel="stylesheet" href="css/style-changeButton.css">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,23 +14,22 @@
             
             <a href="acceuil.html">
                <div class="logo">
-                <img src="css/images/logo.png" alt="Zoo de la Barben">
+                <img src="images/logo.png" alt="Zoo de la Barben">
                 </div>
             
             </a>
             
             
             <nav>
-                <ul>
-                   <div class="nav">
-                    <li><a href="les_habitats.html">Les Habitats</a></li> 
+                <ul class="nav">
+                    <li><a href="les_habitats.html">Les Habitats</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="infos_pratique.html">Infos Pratiques</a></li>
                     <li><a href="billetterie.html" class="cta-button2">Billetterie</a></li>
-                    <li><a href="http://localhost:3000" class="cta-button2">Connexion</a></li>
-                    </div>
-
-
+                    <!-- Conteneur dynamique pour Connexion/Profil -->
+                    <li id="nav-connection">
+                        <a href="http://localhost:3000" class="cta-button2">Connexion</a>
+                    </li>
                 </ul>
             </nav>
     </header>
@@ -48,7 +48,7 @@
                 
                 </div>
             <div class="services-image">
-                    <img src="css/images/resto.jpg" />
+                    <img src="images/resto.jpg" />
                 </div>
         </div>
     </section>
@@ -60,7 +60,7 @@
                 <p>Situé à l'entrée du parc, la boutique vous propose un large choix d’articles et d’idées cadeaux ludiques , décoratifs ou pédagogiques pour petits et grands.</p>
             </div>
         <div class="services-image">
-                <img src="css/images/boutique.jpg" />
+                <img src="images/boutique.jpg" />
             </div>
     </div>
 </section>
@@ -72,7 +72,7 @@
 
      
 
-                <a href="#" class="cta-button">Réserver mes billets</a>
+                <a href="billetterie.html" class="cta-button">Réserver mes billets</a>
         
      
     </div>
@@ -112,6 +112,7 @@
     </div>
 </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/js-service.js"></script>
+    <script src="js/changeButton.js"></script>
 </body>
 </html>

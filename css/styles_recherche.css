@@ -23,10 +23,17 @@
 }
 
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Comfortaa', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-image: url("../images/fond.jpg");
+    background-size: cover;  /* Couvre toute la surface */
+    background-position: center;  /* Centre l'image */
+    background-repeat: no-repeat;  /* Empêche la répétition de l'image */
+    background-attachment: fixed;  /* Fixe l'image, elle ne bouge pas lors du scroll */
+    min-height: 100vh;  /* Assure que le fond couvre au moins toute la hauteur de la fenêtre */
+    background-blend-mode: darken;
+    background-color:  rgba(0,0,0,0.55);
 }
 
 .cta-button {
@@ -45,67 +52,128 @@ body {
     background-color: #a6dca6;
     }
 
-/* En-tête */
-header {
-    background-image: url('../images/fond2.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 20px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 80px;
-    margin-right: 15px;
-}
-
-.logo h1 {
-    color: var(--white);
-    font-size: 1.8rem;
-}
-
-nav ul {
-    display: flex;
-    list-style-type: none;
-    gap: 20px;
-    margin-left: auto;
-    padding-right: 0px;
-}
-
-nav ul li a {
-    color: var(--white);
-    text-decoration: none;
-    padding: 15px 25px; /* Augmentation du padding pour des boutons plus grands */
-    border-radius: 4px;
-    transition: color 0.3s ease;
-    font-weight: bold; /* Mise en gras du texte */
-    font-size: 1.1rem; /* Légèrement plus grand que la taille par défaut */
-}
-
-.nav {
-    order: -1;
-    display: flex;
-    align-items: center;
-}
-
-nav ul li a:hover {
-    background-color: transparent; /* Supprime le changement de fond */
-    color: rgb(234, 197, 29); /* Change uniquement la couleur du texte */
-}
+    .cta-button2 {
+        background-color: #1e6322;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 20px; /* Augmenté à 20 pixels pour un bouton plus arrondi */
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        }
+        .cta-button2:hover {
+        background-color: #1e6322;
+        }
+    
+    /* En-tête */
+    header {
+        background-image: url('../images/fond4.png');
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background-blend-mode: darken;
+        background-color:  rgba(0,0,0,0.15);
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px 20px;
+    }
+    
+    .username-welcome {
+        color: var(--white);
+        margin-left: 10px;
+        font-size: 0.9rem;
+        color: rgb(234, 197, 29);
+        font-weight: bold;
+    }
+    
+    #nav-connection .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo img {
+        width: 80px;
+        margin-right: 15px;
+    }
+    
+    .logo h1 {
+        color: var(--white);
+        font-size: 1.8rem;
+    }
+    
+    nav {
+        display: flex;
+        justify-content: center; /* Centre horizontalement */
+        align-items: center; /* Centre verticalement */
+        width: 100%; /* Prend toute la largeur disponible */
+    }
+    
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        gap: 20px;
+        justify-content: center; /* Centre les éléments de la liste */
+        align-items: center;
+        margin-right: -400px; /* Centre la liste elle-même */
+        padding-right: 0px;
+        width: 100%;
+    }
+    
+    nav ul li:last-child {
+        margin-left: auto; /* Pousse le dernier élément (Connexion) vers la droite */
+    }
+    
+    nav ul li a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 10px 25px; /* Augmentation du padding pour des boutons plus grands */
+        border-radius: 4px;
+        transition: color 0.3s ease;
+        font-weight: bold; /* Mise en gras du texte */
+        font-size: 1.1rem; /* Légèrement plus grand que la taille par défaut */
+    }
+    
+    nav ul li .cta-button2 {
+        margin-left: 10px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        
+    }
+    
+    /* Ajout de cette règle spécifique */
+    nav ul li:last-child .cta-button2 {
+        margin-left: 300px; /* Augmente l'espace avant le bouton Connexion */
+    }
+    
+    .nav {
+        order: -1;
+        display: flex;
+        align-items: center;
+    }
+    
+    nav ul li a:hover {
+        background-color: transparent; /* Supprime le changement de fond */
+        color: rgb(234, 197, 29); /* Change uniquement la couleur du texte */
+    }
+    
 
 /* Sections génériques */
 main {
@@ -204,48 +272,6 @@ main {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Animals section acceuil pour centrer le tout et reduire les bordure*/
-.animals {
-    padding: 4rem 2rem;
-    background-image: url('../images/body.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    margin-top: -100px; /* Remonter la section */
-    padding-top: 6rem; /* Ajuster le padding pour compenser */
-    z-index: 10; /* S'assurer que la section est au-dessus des autres */
-}
-
-.animals::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(7, 18, 21, 0.7); /* Overlay semi-transparent */
-    z-index: -1; /* Placer l'overlay derrière le contenu */
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary-color);
-}
-
-.animals-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1; /* Assurer que le contenu est au-dessus de l'overlay */
-    max-width: 1400px;
-    margin: 0 auto;
-}
 
 .section-title {
     text-align: center;
@@ -321,19 +347,22 @@ nav ul li:hover .services-dropdown {
     box-shadow: var(--card-shadow); /* Ombre pour une meilleure esthétique */
 }
 
-.search-container {
-    flex-grow: 1; /* Prend automatiquement l'espace disponible */
-    height: auto; /* S'adapte à la hauteur de son contenu */
-    background: linear-gradient(145deg, #2e4732, #3b5a42); /* Dégradé élégant */
+.search-container,
+.route-container {
+    flex-grow: 1;
+    height: auto;
+    background: linear-gradient(145deg, #2e4732, #3b5a42);
     padding: var(--spacing-lg);
-    border-radius: 15px; /* Coins plus arrondis */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Ombre douce pour un effet de relief */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ajoute une animation */
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
 }
 
-.search-container:hover {
-    transform: translateY(-5px); /* Légère élévation au survol */
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Ombre plus marquée au survol */
+.search-container:hover,
+.route-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
 
 .search-bar {
@@ -410,14 +439,14 @@ nav ul li:hover .services-dropdown {
 
 /* Style lorsque le volet déroulant est en focus */
 .search-bar:focus {
-    border-color: #007bff; /* Couleur de bordure active */
+    border-color: rgb(234, 197, 29);; /* Couleur de bordure active */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre légère */
     outline: none; /* Supprimer le contour par défaut */
 }
 
 /* Ajout d'un effet au survol */
 .search-bar:hover {
-    border-color: #0056b3; /* Couleur de bordure plus sombre au survol */
+    border-color: rgb(234, 197, 29); /* Couleur de bordure plus sombre au survol */
 }
 
 /* Ajout d'une flèche personnalisée */
@@ -437,7 +466,7 @@ nav ul li:hover .services-dropdown {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: rgb(234, 197, 29);;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -446,13 +475,14 @@ nav ul li:hover .services-dropdown {
 }
 
 .action-button:hover {
-    background-color: #0056b3;
+    background-color: rgb(234, 197, 29);
 }
 
 /* Champs pour définir les itinéraires */
 /* Champs pour définir les itinéraires */
 .route-field {
     margin-bottom: 15px;
+    
 }
 
 .route-field label {
@@ -465,7 +495,7 @@ nav ul li:hover .services-dropdown {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: rgb(234, 197, 29);;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -473,7 +503,7 @@ nav ul li:hover .services-dropdown {
 }
 
 .action-button:hover {
-    background-color: #0056b3;
+    background-color: rgb(234, 197, 29);;
 }
 
 /* Conteneurs */
@@ -488,15 +518,17 @@ nav ul li:hover .services-dropdown {
 /* Style pour la boîte de description de l'itinéraire */
 .route-description {
     margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
 }
 
 .route-description h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: rgb(234, 197, 29);
     font-weight: bold;
 }
 
@@ -507,9 +539,10 @@ nav ul li:hover .services-dropdown {
 }
 
 .route-description ul li {
-    margin: 5px 0;
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
+    margin: 8px 0;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
 }
 /* Bouton retour à la carte */
 #return-to-map-btn {
